@@ -40,14 +40,14 @@ class RSSImporter(Importer):
 	def __init__(self, url):
 		self.url = url
 		self.feed = None
-		self.stripper = MLStripper()
 		
 	def load(self):
 		self.feed = feedparser.parse(self.url)
 		
 	def strip_tags(self, post):
-		self.stripper.feed(post)
-		return converthtml(self.stripper.get_data())
+		stripper = MLStripper()
+		stripper.feed(post)
+		return converthtml(stripper.get_data())
 	
 	def parse(self):
 		if(self.feed == None):
@@ -58,5 +58,5 @@ class RSSImporter(Importer):
 			summary = self.strip_tags(item['summary_detail']['value'])
 			sentences.append(unicodedata.normalize('NFKD', summary).encode('ascii','ignore'))
 		
-		pprint(sentences)
+		#pprint(sentences)
 		return sentences

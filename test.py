@@ -22,7 +22,7 @@ if __name__ == "__main__":
 	tagger = Tagger.DictionaryTagger(['dicts/positive.yml', 'dicts/negative.yml', 
 										'dicts/inc.yml', 'dicts/dec.yml', 'dicts/inv.yml'])
 	scorer = Scorer.Scorer()
-	
+	total = 0
 	for summary in input_text:
 						
 		split = s.split(summary)
@@ -32,4 +32,7 @@ if __name__ == "__main__":
 		#pprint(tagged)
 	
 		score = scorer.score(tagged)
-		print(score)
+		print "%s -> %d" % (summary, score)
+		total += score
+	
+	print "Total: %d" % total
