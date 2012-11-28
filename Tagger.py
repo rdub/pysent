@@ -120,6 +120,7 @@ class DictionaryTagger(Tagger):
 					tagged_sentence.append(tagged_expression)
 					tagged = True
 				else:
+					#print "missing entry: %s" % literal
 					j = j - 1
 			if not tagged:
 				tagged_sentence.append(sentence[i])
